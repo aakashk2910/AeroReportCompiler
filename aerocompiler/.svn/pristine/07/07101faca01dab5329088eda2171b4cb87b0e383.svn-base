@@ -1,0 +1,505 @@
+-- phpMyAdmin SQL Dump
+-- version 4.4.12
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Feb 16, 2016 at 01:31 PM
+-- Server version: 5.6.25
+-- PHP Version: 5.6.11
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `imcwebdb`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `adminindices`
+--
+
+CREATE TABLE IF NOT EXISTS `adminindices` (
+  `id` int(10) unsigned NOT NULL,
+  `userId` int(10) unsigned NOT NULL,
+  `reportId` int(10) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `criterias`
+--
+
+CREATE TABLE IF NOT EXISTS `criterias` (
+  `id` int(10) unsigned NOT NULL,
+  `criteriaId` int(11) NOT NULL,
+  `criteriaName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `criterias`
+--
+
+INSERT INTO `criterias` (`id`, `criteriaId`, `criteriaName`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Leadership', '2016-02-08 12:57:59', '2016-02-08 12:57:59'),
+(2, 2, 'Strategic Planning', '2016-02-16 04:59:47', '2016-02-16 04:59:47'),
+(3, 3, 'Customer Focus', '2016-02-16 05:00:09', '2016-02-16 05:00:09'),
+(4, 4, 'Measurement, Analysis and Knowledge Management', '2016-02-16 05:00:28', '2016-02-16 05:00:28'),
+(5, 5, 'Workforce Focus', '2016-02-16 05:00:43', '2016-02-16 05:01:13'),
+(6, 6, 'Operations Focus', '2016-02-16 05:01:28', '2016-02-16 05:01:28'),
+(7, 7, 'Results', '2016-02-16 05:01:47', '2016-02-16 05:01:47');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `forminputs`
+--
+
+CREATE TABLE IF NOT EXISTS `forminputs` (
+  `id` int(10) unsigned NOT NULL,
+  `userId` int(10) unsigned NOT NULL,
+  `subCriteriaId` int(10) unsigned NOT NULL,
+  `labelId` int(10) unsigned NOT NULL,
+  `labelText` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `A` tinyint(1) NOT NULL,
+  `D` tinyint(1) NOT NULL,
+  `L` tinyint(1) NOT NULL,
+  `I` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `forminputs`
+--
+
+INSERT INTO `forminputs` (`id`, `userId`, `subCriteriaId`, `labelId`, `labelText`, `A`, `D`, `L`, `I`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 1, '<p>Strength Done..........update</p>', 1, 0, 1, 1, '2016-02-15 09:33:04', '2016-02-15 12:38:57'),
+(4, 1, 1, 1, '<p>Strength Done.......... update</p>', 1, 0, 1, 0, '2016-02-15 12:22:39', '2016-02-15 12:22:39'),
+(6, 2, 1, 1, '<p>Ithchi strength</p>', 0, 1, 1, 0, '2016-02-15 14:12:32', '2016-02-15 14:12:32'),
+(7, 2, 1, 1, '<p>madara Uchiha</p>', 1, 0, 1, 0, '2016-02-15 14:12:37', '2016-02-15 14:12:58'),
+(8, 4, 1, 1, '<p>strength by kakashi</p>', 0, 1, 0, 1, '2016-02-16 04:45:54', '2016-02-16 04:46:09'),
+(9, 4, 1, 1, '<p>kakashi hatake strength 2</p>', 1, 0, 1, 0, '2016-02-16 04:46:15', '2016-02-16 04:46:42'),
+(10, 4, 1, 2, '<p>hdwhkjdwjkjcnsjsoxnsjk &nbsp; &nbsp;KH</p>', 0, 0, 0, 0, '2016-02-16 04:46:52', '2016-02-16 04:46:52'),
+(11, 4, 1, 3, '<p>fkjdhfjkkdhfjksdsklk </p>', 1, 0, 0, 0, '2016-02-16 04:47:02', '2016-02-16 04:47:02'),
+(12, 4, 1, 4, '<p>basbhdgsajhjds</p>', 0, 0, 0, 0, '2016-02-16 04:50:24', '2016-02-16 04:50:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `formlabels`
+--
+
+CREATE TABLE IF NOT EXISTS `formlabels` (
+  `id` int(10) unsigned NOT NULL,
+  `labelId` int(11) NOT NULL,
+  `labelText` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `formlabels`
+--
+
+INSERT INTO `formlabels` (`id`, `labelId`, `labelText`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Strength', '2016-02-08 13:15:08', '2016-02-08 13:15:08'),
+(2, 2, 'Opportunity', '2016-02-08 13:21:43', '2016-02-08 13:21:43'),
+(3, 3, 'Scope', '2016-02-08 13:22:06', '2016-02-08 13:22:06'),
+(4, 4, 'SiteVisitIssues', '2016-02-08 13:22:27', '2016-02-08 13:22:27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `groupadmins`
+--
+
+CREATE TABLE IF NOT EXISTS `groupadmins` (
+  `adminId` int(10) unsigned NOT NULL,
+  `userId` int(10) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE IF NOT EXISTS `migrations` (
+  `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`migration`, `batch`) VALUES
+('2014_10_12_000000_create_users_table', 1),
+('2014_10_12_100000_create_password_resets_table', 1),
+('2016_02_07_155252_create_criterias_table', 1),
+('2016_02_07_155513_create_subcriterias_table', 1),
+('2016_02_08_175651_create_criteria_foreignkey', 2),
+('2016_02_08_183932_create_formlabels_table', 3),
+('2016_02_10_153146_create_groupadmins_table', 4),
+('2016_02_9_151904_create_reports_table', 5),
+('2016_02_13_154027_create_forminputs_table', 6),
+('2016_02_13_154118_create_adminindices_table', 6),
+('2016_02_13_162959_create_scores_table', 7),
+('2016_02_13_163108_create_scoretables_table', 8),
+('2016_02_13_181736_create_inputs_table', 8),
+('2016_02_14_114412_create_scores_table', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE IF NOT EXISTS `password_resets` (
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reports`
+--
+
+CREATE TABLE IF NOT EXISTS `reports` (
+  `id` int(10) unsigned NOT NULL,
+  `reportId` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `reportName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `reports`
+--
+
+INSERT INTO `reports` (`id`, `reportId`, `reportName`, `created_at`, `updated_at`) VALUES
+(1, 'TH123', 'Thakur College Of Engineering & Technology', '2016-02-16 05:35:24', '2016-02-16 05:35:24'),
+(2, 'TP12', 'Thakur Polytechnique', '2016-02-16 05:35:57', '2016-02-16 05:35:57'),
+(3, 'FT12', 'Fairy Tail', '2016-02-16 05:36:39', '2016-02-16 05:36:39'),
+(4, 'BP234', 'Blue Pegasus', '2016-02-16 05:39:42', '2016-02-16 05:39:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `scores`
+--
+
+CREATE TABLE IF NOT EXISTS `scores` (
+  `id` int(10) unsigned NOT NULL,
+  `userId` int(10) unsigned NOT NULL,
+  `subCriteriaId` int(10) unsigned NOT NULL,
+  `reportId` int(10) unsigned NOT NULL,
+  `score` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `scoretables`
+--
+
+CREATE TABLE IF NOT EXISTS `scoretables` (
+  `id` int(10) unsigned NOT NULL,
+  `subCriteriaId` int(10) unsigned NOT NULL,
+  `maxScore` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `scoretables`
+--
+
+INSERT INTO `scoretables` (`id`, `subCriteriaId`, `maxScore`, `created_at`, `updated_at`) VALUES
+(1, 1, 70, '2016-02-16 05:23:12', '2016-02-16 05:23:12'),
+(2, 2, 50, '2016-02-16 05:23:25', '2016-02-16 05:23:25'),
+(3, 3, 40, '2016-02-16 05:23:39', '2016-02-16 05:23:39'),
+(4, 4, 45, '2016-02-16 05:23:53', '2016-02-16 05:23:53'),
+(5, 5, 45, '2016-02-16 05:24:14', '2016-02-16 05:24:14'),
+(6, 6, 40, '2016-02-16 05:24:29', '2016-02-16 05:24:29'),
+(7, 7, 45, '2016-02-16 05:24:49', '2016-02-16 05:24:49'),
+(8, 8, 45, '2016-02-16 05:25:00', '2016-02-16 05:25:00'),
+(9, 9, 40, '2016-02-16 05:25:29', '2016-02-16 05:25:29'),
+(10, 10, 45, '2016-02-16 05:25:48', '2016-02-16 05:25:48'),
+(11, 11, 45, '2016-02-16 05:26:06', '2016-02-16 05:26:06'),
+(12, 12, 40, '2016-02-16 05:26:18', '2016-02-16 05:26:18'),
+(13, 13, 120, '2016-02-16 05:26:32', '2016-02-16 05:26:32'),
+(14, 14, 90, '2016-02-16 05:26:45', '2016-02-16 05:26:45'),
+(15, 15, 80, '2016-02-16 05:26:57', '2016-02-16 05:26:57'),
+(16, 16, 80, '2016-02-16 05:27:08', '2016-02-16 05:27:08'),
+(17, 17, 80, '2016-02-16 05:27:21', '2016-02-16 05:27:21');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subcriterias`
+--
+
+CREATE TABLE IF NOT EXISTS `subcriterias` (
+  `id` int(10) unsigned NOT NULL,
+  `subCriteriaId` int(11) NOT NULL,
+  `criteriaId` int(10) unsigned NOT NULL,
+  `subCriteriaName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `subcriterias`
+--
+
+INSERT INTO `subcriterias` (`id`, `subCriteriaId`, `criteriaId`, `subCriteriaName`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 'Senior Leadership', '2016-02-08 13:02:25', '2016-02-08 13:02:25'),
+(2, 2, 1, 'Governance and Societal Resposibilities', '2016-02-08 13:03:57', '2016-02-08 13:03:57'),
+(3, 1, 2, 'Strategy Development', '2016-02-16 05:03:15', '2016-02-16 05:03:15'),
+(4, 2, 2, 'Strategy Implementation', '2016-02-16 05:03:39', '2016-02-16 05:03:39'),
+(5, 1, 3, 'Voice of the Customer ', '2016-02-16 05:04:10', '2016-02-16 05:04:10'),
+(6, 2, 3, 'Customer Engagement', '2016-02-16 05:04:30', '2016-02-16 05:04:30'),
+(7, 1, 4, 'Measurement, Analysis and Improvement of Organizational Performance', '2016-02-16 05:04:52', '2016-02-16 05:04:52'),
+(8, 2, 4, 'Management of Information, Knowledge and Information Technology', '2016-02-16 05:05:10', '2016-02-16 05:05:10'),
+(9, 1, 5, 'Workforce Environment', '2016-02-16 05:05:33', '2016-02-16 05:05:33'),
+(10, 2, 5, 'Workforce Engagement', '2016-02-16 05:06:03', '2016-02-16 05:06:03'),
+(11, 1, 6, 'Work Systems', '2016-02-16 05:06:22', '2016-02-16 05:06:22'),
+(12, 2, 6, 'Work Processes', '2016-02-16 05:06:40', '2016-02-16 05:06:40'),
+(13, 1, 7, 'Product and Process Outcomes', '2016-02-16 05:07:01', '2016-02-16 05:07:01'),
+(14, 2, 7, 'Customer-Focussed Outcomes', '2016-02-16 05:07:20', '2016-02-16 05:07:20'),
+(15, 3, 7, 'Workforce-Focused Outcomes', '2016-02-16 05:07:54', '2016-02-16 05:07:54'),
+(16, 4, 7, 'Leadership and Governance Outcomes', '2016-02-16 05:08:14', '2016-02-16 05:08:14'),
+(17, 5, 7, 'Financial and Market Outcomes', '2016-02-16 05:08:47', '2016-02-16 05:08:47');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(10) unsigned NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Naruto Uzumaki', 'naruto@anime.com', '$2y$10$AbQ5SXAgyQ5JMaxw8fwMX.dPNIsKsYt3OqPTsTcFlmk9Q.3bw3Xve', 'mAypDh5kZBO4zA0qgjymicfzhuomzg1fw6UmTyzVsrkrOrUbIUnq6EJHw2cD', '2016-02-08 12:59:06', '2016-02-15 13:47:08'),
+(2, 'Ithachi Uchiha', 'itachi@uchiha.com', '$2y$10$GS5SdLScvz5e/00sNGy5qO906yqXZhlvA6NU2mHuodEyX9E8GdUSW', 'pZpQDWRHC9fQ2cGIAWEHFMKH3XYqeHfkL2Pz36P9WqtkNAKpDouNf2MxIUyl', '2016-02-08 15:31:56', '2016-02-15 14:17:09'),
+(3, 'Darshak', 'darshak@chutiya.com', '$2y$10$cawoIxQKoYvRUa0GBzxMquv/H5sB9eYv8ZpxPD5IF6VkL.ZdKEuum', 'g6h8GZxp6lrze3TAs0RijHBlDCg9QS2C4KQWrrZAa6mXXAIpQySj8klF1zdb', '2016-02-09 01:23:17', '2016-02-09 02:46:48'),
+(4, 'Kakashi Hatake', 'kakashi@hatake.com', '$2y$10$jGc1QJqdizwkyqt0Uc/mVeHgLxIxZI1qTqPveb8pp2SuyoEA4dpY.', NULL, '2016-02-16 04:45:28', '2016-02-16 04:45:28');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `adminindices`
+--
+ALTER TABLE `adminindices`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `adminindices_userid_foreign` (`userId`),
+  ADD KEY `adminindices_reportid_foreign` (`reportId`);
+
+--
+-- Indexes for table `criterias`
+--
+ALTER TABLE `criterias`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `criterias_criteriaid_unique` (`criteriaId`);
+
+--
+-- Indexes for table `forminputs`
+--
+ALTER TABLE `forminputs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `forminputs_labelid_foreign` (`labelId`),
+  ADD KEY `forminputs_userid_foreign` (`userId`),
+  ADD KEY `forminputs_subcriteriaid_foreign` (`subCriteriaId`);
+
+--
+-- Indexes for table `formlabels`
+--
+ALTER TABLE `formlabels`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `groupadmins`
+--
+ALTER TABLE `groupadmins`
+  ADD PRIMARY KEY (`adminId`),
+  ADD KEY `groupadmins_userid_foreign` (`userId`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`),
+  ADD KEY `password_resets_token_index` (`token`);
+
+--
+-- Indexes for table `reports`
+--
+ALTER TABLE `reports`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `scores`
+--
+ALTER TABLE `scores`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `scores_userid_foreign` (`userId`),
+  ADD KEY `scores_subcriteriaid_foreign` (`subCriteriaId`),
+  ADD KEY `scores_reportid_foreign` (`reportId`);
+
+--
+-- Indexes for table `scoretables`
+--
+ALTER TABLE `scoretables`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `scoretables_subcriteriaid_foreign` (`subCriteriaId`);
+
+--
+-- Indexes for table `subcriterias`
+--
+ALTER TABLE `subcriterias`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `subcriterias_criteriaid_foreign` (`criteriaId`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `adminindices`
+--
+ALTER TABLE `adminindices`
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `criterias`
+--
+ALTER TABLE `criterias`
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `forminputs`
+--
+ALTER TABLE `forminputs`
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `formlabels`
+--
+ALTER TABLE `formlabels`
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `groupadmins`
+--
+ALTER TABLE `groupadmins`
+  MODIFY `adminId` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `reports`
+--
+ALTER TABLE `reports`
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `scores`
+--
+ALTER TABLE `scores`
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `scoretables`
+--
+ALTER TABLE `scoretables`
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT for table `subcriterias`
+--
+ALTER TABLE `subcriterias`
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `adminindices`
+--
+ALTER TABLE `adminindices`
+  ADD CONSTRAINT `adminindices_reportid_foreign` FOREIGN KEY (`reportId`) REFERENCES `reports` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `adminindices_userid_foreign` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `forminputs`
+--
+ALTER TABLE `forminputs`
+  ADD CONSTRAINT `forminputs_labelid_foreign` FOREIGN KEY (`labelId`) REFERENCES `formlabels` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `forminputs_subcriteriaid_foreign` FOREIGN KEY (`subCriteriaId`) REFERENCES `subcriterias` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `forminputs_userid_foreign` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `groupadmins`
+--
+ALTER TABLE `groupadmins`
+  ADD CONSTRAINT `groupadmins_userid_foreign` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `scores`
+--
+ALTER TABLE `scores`
+  ADD CONSTRAINT `scores_reportid_foreign` FOREIGN KEY (`reportId`) REFERENCES `reports` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `scores_subcriteriaid_foreign` FOREIGN KEY (`subCriteriaId`) REFERENCES `subcriterias` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `scores_userid_foreign` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `scoretables`
+--
+ALTER TABLE `scoretables`
+  ADD CONSTRAINT `scoretables_subcriteriaid_foreign` FOREIGN KEY (`subCriteriaId`) REFERENCES `subcriterias` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `subcriterias`
+--
+ALTER TABLE `subcriterias`
+  ADD CONSTRAINT `subcriterias_criteriaid_foreign` FOREIGN KEY (`criteriaId`) REFERENCES `criterias` (`id`) ON DELETE CASCADE;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

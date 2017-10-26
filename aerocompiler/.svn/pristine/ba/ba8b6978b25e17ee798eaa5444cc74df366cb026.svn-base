@@ -1,0 +1,90 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Routes File
+|--------------------------------------------------------------------------
+|
+| Here is where you will register all of the routes in an application.
+| It's a breeze. Simply tell Laravel the URIs it should respond to
+| and give it the controller to call when that URI is requested.
+|
+*/
+
+/*
+|--------------------------------------------------------------------------
+| Application Routes
+|--------------------------------------------------------------------------
+|
+| This route group applies the "web" middleware group to every route
+| it contains. The "web" middleware group is defined in your HTTP
+| kernel and includes session state, CSRF protection, and more.
+|
+*/
+
+Route::group(['middleware' => ['web']], function () {
+    //
+});
+
+Route::group(['middleware' => ['web']], function () {
+	Route::resource('admin/criteria', 'Admin\\CriteriaController');
+});
+
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::get('/', 'HomeController@index');
+});
+
+Route::group(['middleware' => ['web']], function () {
+	Route::resource('admin/criteria', 'Admin\\CriteriaController');
+});
+
+Route::group(['middleware' => ['web']], function () {
+	Route::resource('admin/subcriteria', 'Admin\\subCriteriaController');
+});
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+	Route::get('/report/{uid?}/{sid?}', 'ReportController@index');
+
+	Route::get('gadmin/report/{uid?}/{sid?}', 'ReportController@adminIndex');
+
+    Route::get('/dashboard', 'HomeController@index');
+
+    Route::get('/groupadmin', 'ReportController@select');
+
+	Route::post('/submit/{uid?}/{sid?}/{labelId?}', 'ReportController@savedata');
+
+	Route::post('/update/{uid?}/{sid?}/{labelId?}/{id?}', 'ReportController@updatedata');
+
+	Route::get('/add/{uid?}/{sid?}/{labelId}', 'ReportController@add');
+
+	Route::get('/delete/{uid?}/{sid?}/{labelId?}/{id?}', 'ReportController@delete');
+
+	Route::get('/reportassign', 'ReportController@assign');
+});
+
+Route::group(['middleware' => ['web']], function () {
+	Route::resource('admin/formlabel', 'Admin\\formLabelController');
+});
+Route::group(['middleware' => ['web']], function () {
+	Route::resource('admin/groupadmin', 'Admin\\groupAdminController');
+});
+
+Route::group(['middleware' => ['web']], function () {
+	Route::resource('admin/forminput', 'Admin\\FormInputController');
+});
+Route::group(['middleware' => ['web']], function () {
+	Route::resource('admin/adminindex', 'Admin\\AdminIndexController');
+});
+Route::group(['middleware' => ['web']], function () {
+	Route::resource('admin/report', 'Admin\\ReportController');
+});
+Route::group(['middleware' => ['web']], function () {
+	Route::resource('admin/score', 'Admin\\scoreController');
+});
+Route::group(['middleware' => ['web']], function () {
+	Route::resource('admin/scoretable', 'Admin\\scoreTableController');
+});
+

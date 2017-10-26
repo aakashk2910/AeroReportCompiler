@@ -1,0 +1,86 @@
+@extends('master')
+
+@section('content')
+
+
+        <!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            {!! $cname !!}
+            <small>{!! $sname !!}</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">{!! $cname !!}</a></li>
+            <li class="active">{!! $sname !!}</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    @foreach($flabel as $fl)
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-info">
+                    @if($fl->labelText != "Score")
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">{!! $fl->labelText !!} <small></small></h3>
+                            <!-- tools box -->
+                            <div class="pull-right box-tools">
+                                <button class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                                <button class="btn btn-default btn-sm" data-toggle="tooltip" title="Add&nbsp;b">Add</button>
+                            </div><!-- /. tools -->
+                        </div><!-- /.box-header -->
+                        <div class="box-body pad">
+                            <form method="post" action="#">
+                                <textarea class="textarea" name="strength" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                <div class="box-footer pull-right">
+                                    <div class="checkbox-inline icheck">
+                                        <label>
+                                            <input type="checkbox" name="remember"> A
+                                        </label>
+                                    </div>
+                                    <div class="checkbox-inline icheck">
+                                        <label>
+                                            <input type="checkbox" name="remember"> D
+                                        </label>
+                                    </div>
+                                    <div class="checkbox-inline icheck">
+                                        <label>
+                                            <input type="checkbox" name="remember"> L
+                                        </label>
+                                    </div>
+                                    <div class="checkbox-inline icheck">
+                                        <label>
+                                            <input type="checkbox" name="remember"> I
+                                        </label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                        @else
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">{!! $fl->labelText !!} <small></small></h3>
+                            </div><!-- /.box-header -->
+                            <div class="box-body pad">
+                                <input type="number" name="score">
+                            </div>
+                            <div class="box-body pad">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                        @endif
+                </div>
+            </div><!-- /.col-->
+        </div><!-- ./row -->
+    </section><!-- /.content -->
+    @endforeach
+</div><!-- /.content-wrapper -->
+@endsection
+

@@ -1,0 +1,48 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+
+use DB;
+
+class ReportController extends Controller
+{
+    /**
+     * @param $param
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index($sid = null){
+        $data = DB::table('criterias')->get();
+        $data1 = DB::table('subCriterias')->get();
+        /** @var TYPE_NAME $sid */
+        $sid = $sid;
+
+        $sname = DB::table('subCriterias')->where('subCriteriaId', $sid)->value('subCriteriaName');
+        $cid = DB::table('subCriterias')->where('subCriteriaId', $sid)->value('criteriaId');
+        $cname = DB::table('criterias')->where('criteriaId', $cid)->value('criteriaName');
+        $flabel = DB::table('formlabels')->get();
+
+        return view('Report.reportInput',compact('data','data1','sname', 'cname', 'sid', 'flabel'));
+    }
+
+    public function select(){
+        $data = DB::table('criterias')->get();
+        $data1 = DB::table('subCriterias')->get();
+        /** @var TYPE_NAME $sid */
+        //$sid = $sid;
+        $user = DB::table('users')->get();
+
+        //$sname = DB::table('subCriterias')->where('subCriteriaId', $sid)->value('subCriteriaName');
+        //$cid = DB::table('subCriterias')->where('subCriteriaId', $sid)->value('criteriaId');
+        //$cname = DB::table('criterias')->where('criteriaId', $cid)->value('criteriaName');
+        //$flabel = DB::table('formlabels')->get();
+
+        return view('admin.gAdminSelect',compact('data','data1','user'));
+    }
+
+
+}

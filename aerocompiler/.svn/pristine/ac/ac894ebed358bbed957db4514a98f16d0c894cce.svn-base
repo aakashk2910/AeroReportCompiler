@@ -1,0 +1,42 @@
+<?php $__env->startSection('content'); ?>
+
+    <h1>Criteria <a href="<?php echo e(url('admin/criteria/create')); ?>" class="btn btn-primary pull-right btn-sm">Add New Criterion</a></h1>
+    <div class="table">
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>S.No</th><th>CriteriaId</th><th>CriteriaName</th><th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php /* */$x=0;/* */ ?>
+            <?php foreach($criteria as $item): ?>
+                <?php /* */$x++;/* */ ?>
+                <tr>
+                    <td><?php echo e($x); ?></td>
+                    <td><a href="<?php echo e(url('admin/criteria', $item->id)); ?>"><?php echo e($item->criteriaId); ?></a></td><td><?php echo e($item->criteriaName); ?></td>
+                    <td>
+                        <a href="<?php echo e(url('admin/criteria/' . $item->id . '/edit')); ?>">
+                            <button type="submit" class="btn btn-primary btn-xs">Update</button>
+                        </a> /
+                        <?php echo Form::open([
+                            'method'=>'DELETE',
+                            'url' => ['admin/criteria', $item->id],
+                            'style' => 'display:inline'
+                        ]); ?>
+
+                            <?php echo Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']); ?>
+
+                        <?php echo Form::close(); ?>
+
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+        <div class="pagination"> <?php echo $criteria->render(); ?> </div>
+    </div>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

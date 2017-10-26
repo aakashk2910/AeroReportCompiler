@@ -1,0 +1,35 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+
+class CreateGroupadminsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        
+            Schema::create('groupadmins', function(Blueprint $table) {
+                $table->increments('adminId');
+                $table->integer('userId')->unsigned();
+                $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
+                $table->timestamps();
+            });
+            
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('groupadmins');
+    }
+
+}

@@ -1,0 +1,42 @@
+<?php $__env->startSection('content'); ?>
+
+    <h1>Score <a href="<?php echo e(url('admin/score/create')); ?>" class="btn btn-primary pull-right btn-sm">Add New Score</a></h1>
+    <div class="table">
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>S.No</th><th>UserId</th><th>SubCriteriaId</th><th>ReportId</th><th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php /* */$x=0;/* */ ?>
+            <?php foreach($score as $item): ?>
+                <?php /* */$x++;/* */ ?>
+                <tr>
+                    <td><?php echo e($x); ?></td>
+                    <td><a href="<?php echo e(url('admin/score', $item->id)); ?>"><?php echo e($item->userId); ?></a></td><td><?php echo e($item->subCriteriaId); ?></td><td><?php echo e($item->reportId); ?></td>
+                    <td>
+                        <a href="<?php echo e(url('admin/score/' . $item->id . '/edit')); ?>">
+                            <button type="submit" class="btn btn-primary btn-xs">Update</button>
+                        </a> /
+                        <?php echo Form::open([
+                            'method'=>'DELETE',
+                            'url' => ['admin/score', $item->id],
+                            'style' => 'display:inline'
+                        ]); ?>
+
+                            <?php echo Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']); ?>
+
+                        <?php echo Form::close(); ?>
+
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+        <div class="pagination"> <?php echo $score->render(); ?> </div>
+    </div>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

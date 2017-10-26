@@ -1,0 +1,121 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\FormInput;
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+
+use DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+
+class ReportController extends Controller
+{
+    /**
+     * @param $param
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index($uid = null, $sid = null){
+        $data = DB::table('criterias')->get();
+        $data1 = DB::table('subCriterias')->get();
+        /** @var TYPE_NAME $sid */
+        $sid = $sid;
+        $uid = $uid;
+        $sname = DB::table('subCriterias')->where('id', $sid)->value('subCriteriaName');
+        $cid = DB::table('subCriterias')->where('id', $sid)->value('criteriaId');
+        $cname = DB::table('criterias')->where('criteriaId', $cid)->value('criteriaName');
+        $flabel = DB::table('formlabels')->get();
+
+        return view('Report.reportInput',compact('data','data1','sname', 'cname', 'sid', 'flabel', 'uid'));
+    }
+
+    public function adminIndex($uid = null, $sid = null){
+        $data = DB::table('criterias')->get();
+        $data1 = DB::table('subCriterias')->get();
+        /** @var TYPE_NAME $sid */
+        $sid = $sid;
+        $uid = $uid;
+        $sname = DB::table('subCriterias')->where('subCriteriaId', $sid)->value('subCriteriaName');
+        $cid = DB::table('subCriterias')->where('subCriteriaId', $sid)->value('criteriaId');
+        $cname = DB::table('criterias')->where('criteriaId', $cid)->value('criteriaName');
+        $flabel = DB::table('formlabels')->get();
+
+        return view('Report.groupAdminReportInput',compact('data','data1','sname', 'cname', 'sid', 'flabel', 'uid'));
+    }
+
+    public function select(){
+        $data = DB::table('criterias')->get();
+        $data1 = DB::table('subCriterias')->get();
+        $user = DB::table('users')->get();
+
+        return view('admin.gAdminSelect',compact('data','data1','user'));
+    }
+//'userId', 'subCriteriaId', 'labelId', 'labelText', 'A', 'D', 'L', 'I'
+
+    public function savedata($uid = null, $sid = null, $labelId = null){
+        $FormInput = new FormInput();
+        $FormInput->userId = $uid;
+        $FormInput->subCriteriaId = $sid;
+        $FormInput->labelId = $labelId;
+        $FormInput->labelText = Input::get(DB::table('formlabels')->where('id', $labelId)->value('labelText'));
+        if(Input::get('A')) $FormInput->A = 1;
+        if(Input::get('D')) $FormInput->D = 1;
+        if(Input::get('L')) $FormInput->L = 1;
+        if(Input::get('I')) $FormInput->I = 1;
+        $FormInput->save();
+
+        return Redirect::to('/report/'.$uid.'/'.$sid);
+    }
+
+    public function updatedata($uid = null, $sid = null, $labelId = null, $id){
+        $FormInput = FormInput::findOrNew($id);
+        $FormInput->userId = $uid;
+        $FormInput->subCriteriaId = $sid;
+        $FormInput->labelId = $labelId;
+        $FormInput->labelText = Input::get(DB::table('formlabels')->where('id', $labelId)->value('labelText'));
+        if(Input::get('A')) $FormInput->A = 1;
+        if(Input::get('D')) $FormInput->D = 1;
+        if(Input::get('L')) $FormInput->L = 1;
+        if(Input::get('I')) $FormInput->I = 1;
+        $FormInput->save();
+
+        return Redirect::to('/report/'.$uid.'/'.$sid);
+    }
+
+    public function add($uid = null, $sid = null, $labelId){
+        $FormInput = new FormInput();
+        $FormInput->userId = $uid;
+        $FormInput->subCriteriaId = $sid;
+        $FormInput->labelId = $labelId;
+        $FormInput->labelText = '';
+        if(Input::get('A')) $FormInput->A = 1;
+        if(Input::get('D')) $FormInput->D = 1;
+        if(Input::get('L')) $FormInput->L = 1;
+        if(Input::get('I')) $FormInput->I = 1;
+        $FormInput->save();
+
+        return Redirect::to('/report/'.$uid.'/'.$sid);
+    }
+
+    public function delete($uid = null, $sid = null, $labelId = null, $id){
+        $FormInput = FormInput::findOrNew($id);
+        $FormInput->delete();
+
+        return Redirect::to('/report/'.$uid.'/'.$sid);
+    }
+
+    public function assign(){
+        $data = DB::table('criterias')->get();
+        $data1 = DB::table('subCriterias')->get();
+        $report = DB::table('reports')->get();
+        $user = DB::table('users')->get();
+
+        return view('admin.reportAssign',compact('data','data1','report','user'));
+    }
+
+
+
+}
